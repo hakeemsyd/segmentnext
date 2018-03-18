@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-import { Card, Text } from 'react-native-elements'
+import { View , ScrollView} from 'react-native'
+import { Card } from 'react-native-elements'
+import HTML from 'react-native-render-html';
 
 interface Props {
     navigation?: any; // Question mark indicates prop is optional
@@ -23,9 +24,9 @@ export class Post extends Component<Props, State> {
         return (
             <View style={{ paddingVertical: 20 }}>
                 <Card title={title}>
-                    <Text>
-                      {body}
-                    </Text>
+                  <ScrollView>
+                    <HTML html={body} />
+                  </ScrollView>
                 </Card>
             </View>
         )

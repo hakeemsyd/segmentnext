@@ -51,7 +51,7 @@ export class Home extends Component<Props, State> {
             <View style={{ flex: 1 }}>
                 <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
                     {this.state.posts.map(({ title, /*image, url,*/ id, content }) => (
-                        <Card title={title.rendered}  key={id}>
+                        <Card title={title.rendered} key={id}>
                             <Button
                                 backgroundColor='#03A9F4'
                                 title='Read More'
