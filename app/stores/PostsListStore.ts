@@ -3,25 +3,9 @@ import { observable } from 'mobx';
 // import { Router } from '../router';
 // import { Constants } from '../utils/constants';
 
-class Post {
-    id: number;
-    title: string;
-    body: string;
-    image: string;
-    url: string;
-
-    constructor(id: number, title: string, body: string, image: string, url: string) {
-      this.id = id;
-      this.title = title;
-      this.body = body;
-      this.image = image;
-      this.url = url;
-    }
-}
-
 export class PostsListStore {
     @observable
-    posts: Post[];
+    posts: Array<{id: number, title: string, body: string, image: string, url: string}>;
 
     constructor() {
       const p = [
@@ -58,7 +42,7 @@ export class PostsListStore {
     }
 
 
-    addPost(id: string, title: string, body: string): void {
+    addPost(id: number, title: string, body: string): void {
         this.posts.push({
           id: id,
           title: title,

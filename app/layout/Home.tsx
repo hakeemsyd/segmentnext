@@ -1,8 +1,8 @@
 'use strict'
 import React, { Component } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, View, ActivityIndicator} from 'react-native'
 import { Card, Button } from 'react-native-elements'
-import { PostsListStore } from '../stores/PostsListStore';
+// import { PostsListStore } from '../stores/PostsListStore';
 import { observer } from 'mobx-react';
 
 interface Props {
@@ -10,27 +10,48 @@ interface Props {
 }
 
 interface State {
+  isLoading: boolean,
+  posts: Array<{userId: string, id: number, title: string, body: string}>,
 }
 
 @observer
 export class Home extends Component<Props, State> {
-    private postsStore: PostsListStore;
-
     constructor(props) {
         super(props);
-        //console.log(props);
-        this.postsStore = new PostsListStore();
+        this.state ={ isLoading: true, posts: []}
     }
 
+    componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          posts: responseJson,
+        }, function(){
+
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
     render() {
+        if(this.state.isLoading){
+            return(
+              <View style={{flex: 1, padding: 20}}>
+                <ActivityIndicator/>
+              </View>
+            )
+        }
+
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
-                    {this.postsStore.posts.map(({ title, /*image, url,*/ id, body }) => (
-                        <Card title={`CARD ${id}`}  key={id}>
-                            <Text style={{ marginBottom: 10 }}>
-                                Photo by {title}.
-                            </Text>
+                    {this.state.posts.map(({ title, /*image, url,*/ id, body }) => (
+                        <Card title={title}  key={id}>
                             <Button
                                 backgroundColor='#03A9F4'
                                 title='Read More'
