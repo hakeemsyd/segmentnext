@@ -16,13 +16,13 @@ gulp.task('build', ['assets'], function () {
 });
 
 gulp.task('assets', ['clean'], function () {
-    gulp.src("./app/images/**.*")
-        .pipe(gulp.dest('bin/app/images/'));
+    //gulp.src("./app/images/**.*")
+      //  .pipe(gulp.dest('bin/app/images/'));
 });
 
 gulp.task('watch', ['build'], function () {
-    gulp.watch('./**/*.ts', ['build']);
-    gulp.watch('./**/*.tsx', ['build']);
+    gulp.watch('./**/*.ts', ['clean','build']);
+    gulp.watch('./**/*.tsx', ['clean','build']);
 });
 
 gulp.task('default', ['build']);

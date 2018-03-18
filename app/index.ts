@@ -5,4 +5,4 @@ import { Constants } from './utils/constants';
 import * as firebase from 'firebase';
 
 export const firebaseApp = firebase.initializeApp(Constants.config);
-AppRegistry.registerComponent('segmentnext', () => Router.SignedOut);
+AppRegistry.registerComponent('segmentnext', () => Router.Main);
