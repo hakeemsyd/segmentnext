@@ -26,14 +26,14 @@ export class Home extends Component<Props, State> {
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
-                    {this.postsStore.posts.map(({ title, image, url, id, body }) => (
-                        <Card title={`CARD ${id}`} key={id}>
+                    {this.postsStore.posts.map(({ title, /*image, url,*/ id, body }) => (
+                        <Card title={`CARD ${id}`}  key={id}>
                             <Text style={{ marginBottom: 10 }}>
                                 Photo by {title}.
                             </Text>
                             <Button
                                 backgroundColor='#03A9F4'
-                                title='VIEW NOW'
+                                title='Read More'
                                 onPress={() =>  this.props.navigation.navigate('Post', {title: title, body: body})}
                             />
                         </Card>

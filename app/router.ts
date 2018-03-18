@@ -6,8 +6,8 @@ import { StackNavigator } from 'react-navigation';
 
 import { Home } from './layout/Home';
 import { Post } from './layout/Post';
-import { NavigationActions } from 'react-navigation';
-import { PostsListStore } from './stores/PostsListStore';
+// import { NavigationActions } from 'react-navigation';
+// import { PostsListStore } from './stores/PostsListStore';
 
 export class Router {
 	private constructor() {

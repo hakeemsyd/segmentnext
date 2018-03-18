@@ -1,12 +1,27 @@
 'use strict';
 import { observable } from 'mobx';
-import { Router } from '../router';
-import { Constants } from '../utils/constants';
+// import { Router } from '../router';
+// import { Constants } from '../utils/constants';
 
+class Post {
+    id: number;
+    title: string;
+    body: string;
+    image: string;
+    url: string;
+
+    constructor(id: number, title: string, body: string, image: string, url: string) {
+      this.id = id;
+      this.title = title;
+      this.body = body;
+      this.image = image;
+      this.url = url;
+    }
+}
 
 export class PostsListStore {
     @observable
-    posts: [];
+    posts: Post[];
 
     constructor() {
       const p = [
