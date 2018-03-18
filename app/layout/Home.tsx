@@ -11,7 +11,7 @@ interface Props {
 
 interface State {
   isLoading: boolean,
-  posts: Array<{userId: string, id: number, title: string, body: string}>,
+  posts: Array<{id: number, title: {rendered: string}, content: {rendered: string}}>,
 }
 
 @observer
@@ -22,7 +22,7 @@ export class Home extends Component<Props, State> {
     }
 
     componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch('https://segmentnext.com/wp-json/wp/v2/posts?categories=5880')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -50,12 +50,12 @@ export class Home extends Component<Props, State> {
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
-                    {this.state.posts.map(({ title, /*image, url,*/ id, body }) => (
-                        <Card title={title}  key={id}>
+                    {this.state.posts.map(({ title, /*image, url,*/ id, content }) => (
+                        <Card title={title.rendered}  key={id}>
                             <Button
                                 backgroundColor='#03A9F4'
                                 title='Read More'
-                                onPress={() =>  this.props.navigation.navigate('Post', {title: title, body: body})}
+                                onPress={() =>  this.props.navigation.navigate('Post', {title: title.rendered, body: content.rendered})}
                             />
                         </Card>
                     ))}
